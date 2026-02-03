@@ -1,0 +1,65 @@
+{
+  "name": "tagit",
+  "version": "1.0.0",
+  "description": "Generate creative Git tags and semantic version tags with random category-based names",
+  "keywords": [
+    "git",
+    "tag",
+    "tagging",
+    "version",
+    "versioning",
+    "cli",
+    "semantic-versioning",
+    "release",
+    "git-tag"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "tagit": "./dist/cli.js",
+    "t": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "conf": "^12.0.0",
+    "inquirer": "^9.2.14",
+    "ora": "^8.0.1",
+    "semver": "^7.6.0",
+    "simple-git": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.7",
+    "@types/node": "^20.11.16",
+    "@types/semver": "^7.5.7",
+    "eslint": "^8.56.0",
+    "prettier": "^3.8.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.2"
+  },
+  "type": "module"
+}
