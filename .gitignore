@@ -6,3 +6,4 @@ coverage
 test-repo
 .env
 package-lock.json
+.vscode/

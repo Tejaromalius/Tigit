@@ -12,6 +12,7 @@ export enum TagPattern {
   ColorAnimal = "color-animal",
   AdjectiveColorAnimal = "adjective-color-animal",
   VerbAdjectiveNoun = "verb-adjective-noun",
+  Random = "random",
   Version = "version",
 }
 

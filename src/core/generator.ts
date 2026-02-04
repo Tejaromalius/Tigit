@@ -1,5 +1,5 @@
 import { TagPattern, TigitConfig } from "../types/index.js";
-import { loadCategory } from "../data/index.js";
+import { loadCategory, AVAILABLE_CATEGORIES } from "../data/index.js";
 import { DEFAULT_CONFIG } from "./config.js";
 
 export class NameGenerator {
@@ -8,6 +8,12 @@ export class NameGenerator {
 
   constructor(config: Partial<TigitConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
+  }
+
+  private getRandomCategory(): string {
+    return AVAILABLE_CATEGORIES[
+      Math.floor(Math.random() * AVAILABLE_CATEGORIES.length)
+    ];
   }
 
   private getWords(category: string): string[] {
@@ -24,11 +30,18 @@ export class NameGenerator {
   }
 
   generate(pattern?: TagPattern | string): string {
-    const p = pattern || this.config.pattern || TagPattern.AdjectiveAnimal;
+    const p = pattern || this.config.pattern || TagPattern.Random;
 
     let parts: string[] = [];
 
     switch (p) {
+      case TagPattern.Random:
+      case "random":
+        const count = Math.min(this.config.maxWords || 2, 5);
+        parts = Array.from({ length: count }, () =>
+          this.getRandomWord(this.getRandomCategory()),
+        );
+        break;
       case TagPattern.AdjectiveAnimal:
       case "adjective-animal":
       case "adjective-noun": // treating noun as animal for now
