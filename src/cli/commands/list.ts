@@ -4,7 +4,14 @@ import chalk from "chalk";
 
 export function listCommand(tigit: Tigit) {
   return new Command("list")
-    .description("List existing tags")
+    .description("List all existing tags in the current repository")
+    .addHelpText(
+      "after",
+      `
+Examples:
+  $ tigit list
+`,
+    )
     .action(async () => {
       try {
         await tigit.init();

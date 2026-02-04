@@ -4,7 +4,14 @@ import chalk from "chalk";
 
 export function pushCommand(tigit: Tigit) {
   return new Command("push")
-    .description("Push tags to remote")
+    .description("Push all local tags to the remote repository")
+    .addHelpText(
+      "after",
+      `
+Examples:
+  $ tigit push
+`,
+    )
     .action(async () => {
       try {
         await tigit.init();

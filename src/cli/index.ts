@@ -13,8 +13,20 @@ const tigit = new Tigit();
 
 program
   .name("tigit")
-  .description("Generate creative Git tags and semantic version tags")
-  .version("1.0.0");
+  .description(
+    "🏷️  Generate creative Git tags and semantic version tags with ease",
+  )
+  .version("1.0.0")
+  .addHelpText(
+    "after",
+    `
+Examples:
+  $ tigit                # Quick creative tag (e.g. "gentle-wolf")
+  $ t                    # Even faster using the global alias
+  $ tigit --help         # Show this help
+  $ tigit create --help  # Show help for create command
+`,
+  );
 
 // Default action if no command specified: create random tag (Ultra-fast 't' mode)
 program.action(async () => {

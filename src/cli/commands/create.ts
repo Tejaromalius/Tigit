@@ -7,10 +7,10 @@ export function createCommand(tigit: Tigit) {
   const cmd = new Command("create");
 
   cmd
-    .description("Create a new tag")
+    .description("Create a new Git tag (random creative or semantic version)")
     .option(
       "-p, --pattern <pattern>",
-      "Naming pattern (e.g., adjective-animal)",
+      "Naming pattern for creative tags (e.g., adjective-animal, color-animal-verb)",
     )
     .option(
       "-v, --tag-version <version>",
@@ -18,8 +18,32 @@ export function createCommand(tigit: Tigit) {
     )
     .option("-t, --type <type>", "Tag type (alpha, beta, rc, stable)", "stable")
     .option("-b, --bump <level>", "Bump version (major, minor, patch)")
-    .option("--push", "Push to remote after creation")
-    .option("-m, --message <message>", "Tag message")
+    .option("--push", "Push the new tag to remote repository immediately")
+    .option(
+      "-m, --message <message>",
+      "Add a message to the tag (creates an annotated tag)",
+    )
+    .addHelpText(
+      "after",
+      `
+Available Patterns:
+  random (default)       - 2-word random combination
+  adjective-animal       - e.g., silent-tiger
+  adjective-noun         - alias for adjective-animal
+  color-animal           - e.g., crimson-panda
+  adjective-color-animal - e.g., huge-blue-bear
+  verb-adjective-noun    - e.g., jump-happy-deer
+  color-animal-verb      - e.g., red-fox-ran
+
+Examples:
+  $ tigit create                                     # creative-random-tag
+  $ tigit create --pattern color-animal-verb         # red-fox-ran
+  $ tigit create --tag-version 1.0.0                 # v1.0.0
+  $ tigit create --tag-version 1.1.0-beta --type beta # v1.1.0-beta
+  $ tigit create --bump patch --push                 # Bumps patch version and pushes
+  $ tigit create -m "Release version 2.0"            # Tag with message
+`,
+    )
     .action(async (options) => {
       try {
         await tigit.init();

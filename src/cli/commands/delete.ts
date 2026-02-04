@@ -5,8 +5,16 @@ import chalk from "chalk";
 export function deleteCommand(tigit: Tigit) {
   return new Command("delete")
     .argument("<tag>", "Tag name to delete")
-    .description("Delete a tag")
-    .option("--remote", "Delete from remote repository too")
+    .description("Delete an existing tag")
+    .option("--remote", "Delete the tag from the remote repository as well")
+    .addHelpText(
+      "after",
+      `
+Examples:
+  $ tigit delete v1.0.0            # Delete locally
+  $ tigit delete v1.0.0 --remote   # Delete locally and on remote
+`,
+    )
     .action(async (tagName, options) => {
       try {
         await tigit.init();
