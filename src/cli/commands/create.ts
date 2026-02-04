@@ -1,9 +1,9 @@
 import { Command } from "commander";
-import { Tagit } from "../../core/tagger.js";
+import { Tigit } from "../../core/tagger.js";
 import { TagType, TagResult } from "../../types/index.js";
 import chalk from "chalk";
 
-export function createCommand(tagit: Tagit) {
+export function createCommand(tigit: Tigit) {
   const cmd = new Command("create");
 
   cmd
@@ -22,23 +22,23 @@ export function createCommand(tagit: Tagit) {
     .option("-m, --message <message>", "Tag message")
     .action(async (options) => {
       try {
-        await tagit.init();
+        await tigit.init();
         let result: TagResult;
 
         if (options.tagVersion) {
-          result = await tagit.createVersionTag({
+          result = await tigit.createVersionTag({
             version: options.tagVersion,
             type: options.type as TagType,
             metadata: options.message,
           });
         } else if (options.bump) {
-          result = await tagit.bumpVersion({
+          result = await tigit.bumpVersion({
             type: options.type as TagType,
             bump: options.bump,
           });
         } else {
           // Random creative tag
-          result = await tagit.createRandomTag({
+          result = await tigit.createRandomTag({
             pattern: options.pattern,
             message: options.message,
             annotated: !!options.message,
@@ -49,7 +49,7 @@ export function createCommand(tagit: Tagit) {
 
         if (options.push) {
           console.log(chalk.gray("Pushing to remote..."));
-          await tagit.pushTags(); // Or push specific tag if API supports
+          await tigit.pushTags(); // Or push specific tag if API supports
           console.log(chalk.blue("Pushed successfully."));
         }
       } catch (error: any) {

@@ -1,6 +1,6 @@
 {
-  "name": "tagit",
-  "version": "1.0.2",
+  "name": "tigit",
+  "version": "1.0.0",
   "description": "Generate creative Git tags and semantic version tags with random category-based names",
   "keywords": [
     "git",
@@ -34,7 +34,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "tagit": "dist/cli.js",
+    "tigit": "dist/cli.js",
     "t": "dist/cli.js"
   },
   "directories": {

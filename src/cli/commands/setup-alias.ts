@@ -22,7 +22,7 @@ export function setupAliasCommand() {
         console.log(
           `Please add the following to your shell configuration manually:\n`,
         );
-        console.log(chalk.cyan('alias t="tagit"'));
+        console.log(chalk.cyan('alias t="tigit"'));
         return;
       }
 
@@ -30,10 +30,10 @@ export function setupAliasCommand() {
       const rcPath = path.join(homeDir, rcFile);
 
       try {
-        const aliasLine = '\nalias t="tagit"\n';
+        const aliasLine = '\nalias t="tigit"\n';
         if (fs.existsSync(rcPath)) {
           const content = fs.readFileSync(rcPath, "utf-8");
-          if (content.includes('alias t="tagit"')) {
+          if (content.includes('alias t="tigit"')) {
             console.log(chalk.green(`Alias already exists in ${rcFile}`));
             return;
           }

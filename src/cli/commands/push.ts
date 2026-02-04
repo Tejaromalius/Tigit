@@ -1,15 +1,15 @@
 import { Command } from "commander";
-import { Tagit } from "../../core/tagger.js";
+import { Tigit } from "../../core/tagger.js";
 import chalk from "chalk";
 
-export function pushCommand(tagit: Tagit) {
+export function pushCommand(tigit: Tigit) {
   return new Command("push")
     .description("Push tags to remote")
     .action(async () => {
       try {
-        await tagit.init();
+        await tigit.init();
         console.log(chalk.gray("Pushing tags..."));
-        await tagit.pushTags();
+        await tigit.pushTags();
         console.log(
           chalk.green("Already up to date or tags pushed successfully."),
         );

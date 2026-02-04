@@ -1,6 +1,6 @@
-import { TagitConfig, TagPattern } from "../types/index.js";
+import { TigitConfig, TagPattern } from "../types/index.js";
 
-export const DEFAULT_CONFIG: TagitConfig = {
+export const DEFAULT_CONFIG: TigitConfig = {
   categories: ["adjectives", "animals"],
   separator: "-",
   maxWords: 3,

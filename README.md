@@ -1,13 +1,13 @@
-# Tagit 🏷️
+# Tigit 🏷️
 
 > Generate creative, memorable Git tags and semantic version tags with a single command.
 
-[![npm version](https://img.shields.io/npm/v/tagit.svg)](https://www.npmjs.com/package/tagit)
+[![npm version](https://img.shields.io/npm/v/tigit.svg)](https://www.npmjs.com/package/tigit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## ⚡ Ultra-Fast Tagging
 
-Speed is a feature. Tagit provides a global alias `t` for instant tagging.
+Speed is a feature. Tigit provides a global alias `t` for instant tagging.
 
 ```bash
 t
@@ -28,10 +28,10 @@ No prompts. No config needed. Just one keystroke to mark your progress.
 ## Installation
 
 ```bash
-npm install -g tagit
+npm install -g tigit
 ```
 
-This installs two commands: `tagit` and the ultra-fast alias `t`.
+This installs two commands: `tigit` and the ultra-fast alias `t`.
 
 ## Usage
 
@@ -45,24 +45,24 @@ t --push      # Create and push to remote
 ### Semantic Releases
 
 ```bash
-tagit create --tag-version 1.0.0               # v1.0.0
-tagit create --tag-version 1.0.0 --type beta   # v1.0.0-beta
-tagit create --bump patch --type beta          # Auto-increment
+tigit create --tag-version 1.0.0               # v1.0.0
+tigit create --tag-version 1.0.0 --type beta   # v1.0.0-beta
+tigit create --bump patch --type beta          # Auto-increment
 ```
 
 ### Creative Patterns
 
 ```bash
-tagit create --pattern adjective-animal        # silent-wolf
-tagit create --pattern color-animal-verb       # red-fox-ran
+tigit create --pattern adjective-animal        # silent-wolf
+tigit create --pattern color-animal-verb       # red-fox-ran
 ```
 
 ### Manage Tags
 
 ```bash
-tagit list
-tagit delete <tag-name> --remote
-tagit push
+tigit list
+tigit delete <tag-name> --remote
+tigit push
 ```
 
 ## License

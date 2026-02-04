@@ -1,7 +1,7 @@
 import { NameGenerator } from "./generator.js";
 import { GitOperations } from "../git/operations.js";
 import {
-  TagitConfig,
+  TigitConfig,
   TagOptions,
   VersionTagOptions,
   TagType,
@@ -11,12 +11,12 @@ import {
 import { DEFAULT_CONFIG } from "./config.js";
 import semver from "semver";
 
-export class Tagit {
+export class Tigit {
   private generator: NameGenerator;
   private git: GitOperations;
-  private config: TagitConfig;
+  private config: TigitConfig;
 
-  constructor(config: Partial<TagitConfig> = {}) {
+  constructor(config: Partial<TigitConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
     this.generator = new NameGenerator(this.config);
     this.git = new GitOperations();

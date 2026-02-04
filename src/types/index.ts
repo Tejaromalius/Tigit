@@ -15,7 +15,7 @@ export enum TagPattern {
   Version = "version",
 }
 
-export interface TagitConfig {
+export interface TigitConfig {
   categories: string[];
   separator: string;
   maxWords: number;

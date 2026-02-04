@@ -1,12 +1,12 @@
-import { TagPattern, TagitConfig } from "../types/index.js";
+import { TagPattern, TigitConfig } from "../types/index.js";
 import { loadCategory } from "../data/index.js";
 import { DEFAULT_CONFIG } from "./config.js";
 
 export class NameGenerator {
   private cache: Map<string, string[]> = new Map();
-  private config: TagitConfig;
+  private config: TigitConfig;
 
-  constructor(config: Partial<TagitConfig> = {}) {
+  constructor(config: Partial<TigitConfig> = {}) {
     this.config = { ...DEFAULT_CONFIG, ...config };
   }
 
