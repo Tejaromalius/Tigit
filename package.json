@@ -13,13 +13,17 @@
     "release",
     "git-tag"
   ],
-  "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "bin": {
-    "tagit": "./dist/cli.js",
-    "t": "./dist/cli.js"
+  "homepage": "https://github.com/Tejaromalius/Tagit#readme",
+  "bugs": {
+    "url": "https://github.com/Tejaromalius/Tagit/issues"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tejaromalius/Tagit.git"
+  },
+  "license": "MIT",
+  "author": "tejaromalius",
+  "type": "module",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -27,14 +31,21 @@
       "require": "./dist/index.js"
     }
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "tagit": "dist/cli.js",
+    "t": "dist/cli.js"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
   "files": [
     "dist",
     "README.md",
     "LICENSE"
   ],
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "scripts": {
     "build": "tsup",
     "test": "vitest",
@@ -61,5 +72,8 @@
     "typescript": "^5.3.3",
     "vitest": "^1.2.2"
   },
-  "type": "module"
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "module": "./dist/index.mjs"
 }
