@@ -29,14 +29,11 @@ Examples:
 `,
   );
 
-// Default action if no command specified: create random tag (Ultra-fast 't' mode)
+// Default action if no command specified: Smart Mode (Detects versioning vs creative)
 program.action(async () => {
-  // Check if arguments were passed that match commands but weren't caught
-  // But if we are here, no subcommands matched.
-  // So we just create a random tag immediately.
   try {
     await tigit.init();
-    const result = await tigit.createRandomTag({ annotated: false });
+    const result = await tigit.createSmartTag({ annotated: false });
     console.log(chalk.green(`✨ Tag created: ${chalk.bold(result.name)}`));
   } catch (e: any) {
     console.error(chalk.red("Error:"), e.message);

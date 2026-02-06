@@ -133,6 +133,21 @@ export class Tigit {
     });
   }
 
+  async createSmartTag(options: TagOptions = {}): Promise<TagResult> {
+    const latest = await this.git.getLatestTag();
+
+    if (latest && semver.valid(semver.clean(latest))) {
+      // Detected a semantic versioning pattern
+      return this.bumpVersion({
+        type: TagType.Stable,
+        bump: "patch",
+      });
+    }
+
+    // Default to creative random tag if no tags or latest is not semver
+    return this.createRandomTag(options);
+  }
+
   async listTags(): Promise<string[]> {
     return this.git.listTags();
   }
