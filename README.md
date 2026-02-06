@@ -57,6 +57,19 @@ tigit create --pattern adjective-animal        # silent-wolf
 tigit create --pattern color-animal-verb       # red-fox-ran
 ```
 
+### Managing Configuration
+
+Set default patterns and styles to avoid using flags every time:
+
+```bash
+tigit config set pattern adjective-animal
+tigit config set maxWords 3
+tigit config set separator "."
+tigit config list
+```
+
+If a specified pattern or category is not found, Tigit gracefully falls back to a random combination.
+
 ### Manage Tags
 
 ```bash

@@ -7,6 +7,7 @@ import { listCommand } from "./commands/list.js";
 import { deleteCommand } from "./commands/delete.js";
 import { pushCommand } from "./commands/push.js";
 import { setupAliasCommand } from "./commands/setup-alias.js";
+import { configCommand } from "./commands/config.js";
 
 const program = new Command();
 const tigit = new Tigit();
@@ -49,5 +50,6 @@ program.addCommand(listCommand(tigit));
 program.addCommand(deleteCommand(tigit));
 program.addCommand(pushCommand(tigit));
 program.addCommand(setupAliasCommand());
+program.addCommand(configCommand());
 
 program.parse(process.argv);

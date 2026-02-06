@@ -44,7 +44,7 @@ export class NameGenerator {
         break;
       case TagPattern.AdjectiveAnimal:
       case "adjective-animal":
-      case "adjective-noun": // treating noun as animal for now
+      case "adjective-noun":
         parts = [
           this.getRandomWord("adjectives"),
           this.getRandomWord("animals"),
@@ -78,11 +78,16 @@ export class NameGenerator {
         ];
         break;
       default:
-        // Default fallthrough
-        parts = [
-          this.getRandomWord("adjectives"),
-          this.getRandomWord("animals"),
-        ];
+        // If it's a valid category, use it
+        if (AVAILABLE_CATEGORIES.includes(p as string)) {
+          parts = [this.getRandomWord(p as string)];
+        } else {
+          // Fallback to random if nothing matches
+          const count = Math.min(this.config.maxWords || 2, 5);
+          parts = Array.from({ length: count }, () =>
+            this.getRandomWord(this.getRandomCategory()),
+          );
+        }
     }
 
     return parts.join(this.config.separator);

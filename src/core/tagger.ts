@@ -8,7 +8,7 @@ import {
   TagPattern,
   TagResult,
 } from "../types/index.js";
-import { DEFAULT_CONFIG } from "./config.js";
+import { configManager } from "./config-manager.js";
 import semver from "semver";
 
 export class Tigit {
@@ -17,7 +17,8 @@ export class Tigit {
   private config: TigitConfig;
 
   constructor(config: Partial<TigitConfig> = {}) {
-    this.config = { ...DEFAULT_CONFIG, ...config };
+    // Merge provided config with persistent config, which defaults to DEFAULT_CONFIG
+    this.config = { ...configManager.getAll(), ...config };
     this.generator = new NameGenerator(this.config);
     this.git = new GitOperations();
   }
@@ -95,11 +96,33 @@ export class Tigit {
     versions.sort(semver.rcompare);
     const latest = versions[0];
 
+    let nextVersion: string | null;
+
     if (!latest) {
-      throw new Error("No existing versions found to bump");
+      // No existing versions - create initial version
+      nextVersion = "0.1.0";
+
+      // If pre-release type is specified, append it
+      if (options.type !== TagType.Stable) {
+        nextVersion = `${nextVersion}-${options.type}.0`;
+      }
+    } else {
+      // Bump from existing version
+      if (options.type === TagType.Stable) {
+        // For stable releases, just bump the version
+        nextVersion = semver.inc(latest, options.bump);
+      } else {
+        // For pre-releases (alpha, beta, rc), use prerelease increment
+        // First bump the version, then add the pre-release identifier
+        const bumped = semver.inc(latest, options.bump);
+        if (bumped) {
+          nextVersion = `${bumped}-${options.type}.0`;
+        } else {
+          nextVersion = null;
+        }
+      }
     }
 
-    const nextVersion = semver.inc(latest, options.bump, options.type as any); // Type cast might be needed depending on semver types
     if (!nextVersion) {
       throw new Error("Failed to increment version");
     }
