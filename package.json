@@ -1,6 +1,6 @@
 {
   "name": "tigit",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Generate creative Git tags and semantic version tags with random category-based names",
   "keywords": [
     "git",
